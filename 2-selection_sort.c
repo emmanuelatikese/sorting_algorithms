@@ -9,42 +9,30 @@
 
 void selection_sort(int *array, size_t size)
 {
-	int current = 0, s = 1;
-	size_t i = 0, j = 1, pos;
-	int min, t = 0;
+	size_t i, j, idx;
+	int current;
 
-	if (array == NULL && size < 2)
+	if (array == NULL || size < 2)
 		return;
 
-	while (s != 0)
+	for (i = 0; i < size; i++)
 	{
-		s = 0;
-		for (i = 0; i < size; i++)
-		{
-			current = array[i];
-			j = 1;
-			while (j + i < size)
-			{
-				if (current > array[j] && t == 0)
-				{
-					min = array[j];
-					t = 1;
-				}
-				else if (min && min > array[j])
-				{
-					min = array[j];
-					pos = j;
-				}
-				j++;
-			}
-			if (min)
-			{
-				array[i] = min;
-				array[pos] = current;
-				s += 1;
-				print_array(array, size);
-			}
+		current = array[i];
+		idx = i;
 
+		for (j = i + 1; j < size; j++)
+		{
+			if(array[idx] > array[j])
+			{
+				idx = j;
+			}
+		}
+
+		if (idx != i)
+		{
+			array[i] = array[idx];
+			array[idx] = current;
+			print_array(array, size);
 		}
 	}
 }
