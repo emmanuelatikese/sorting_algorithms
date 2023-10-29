@@ -10,17 +10,18 @@
 
 void shell_sort(int *array, size_t size)
 {
-	size_t g, j, i;
+	size_t g = 1, j, i;
 
 	if (array == NULL || size < 2)
 		return;
 
-	for (g = size / 2; g > 0; g /= 2)
+	while (g < (size / 3))
 	{
-		if (g != size / 2)
-		{
-			print_array(array, size);
-		}
+		g = g * 3 + 1;
+	}
+
+	for (; g > 0; g /= 3)
+	{
 
 		for (j = g; j < size; j++)
 		{
@@ -33,5 +34,6 @@ void shell_sort(int *array, size_t size)
 			}
 			array[i] = tmp;
 		}
+		print_array(array, size);
 	}
 }
